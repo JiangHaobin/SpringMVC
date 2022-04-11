@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+<!--    配置springMVC的前端控制，对浏览器发送的请求进行统一处理-->
+    <servlet>
+        <servlet-name>SpringMVC</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+<!--        配置SpringMVC配置文件的位置和名称-->
+        <init-param>
+<!--            下面的名字默认-->
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:springMVC.xml</param-value>
+        </init-param>
+<!--因为前端控制会接收所有请求，所以前端控制器会在第一次收到请求的时候一下子执行很多内容，不像之前的servlet，请求一个servlet就加载一个。（Servlet的生命
+是从第一次请求开始创建的。）
+所以以下设置可以在服务器启动时就加载完前端控制的内容，避免用户第一次请求等待太久。
+（将前端控制器DispatcherServlet的初始化时间提前到服务器启动时）-->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+<!--        设置springMVC的核心控制器所能处理的请求路径 斜杠/所匹配的请求可以是/login或.js或.css方式请求路径，但是不能匹配.jsp路径的请求-->
+        <servlet-name>SpringMVC</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+</web-app>
