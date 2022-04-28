@@ -9,6 +9,7 @@ package com.atguigu.mvc.bean;
  * @date: 2022/2/19 16:13
  * @version: 1.0
  */
+//姜浩斌大帅哥
 public class User {
     private Integer id;
     private String username;
